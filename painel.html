@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <a href="./fakeNews.html">Ir para o Jogo</a>
+    <div style="display: block;" id="autenticarForm">
+        <form>
+            <h1>Login</h1>
+            <p>Digite seu usuário: </p>
+            <input id="inputUser" />
+            <p>Digite sua senha: </p>
+            <input type="password" id="inputSenha" />
+            <br />
+        </form>
+        <button onclick="autenticar()">Entrar</button>
+    </div>
+
+
+    <div style="display: none" id="painel">
+        <h1>Painel administrativo</h1>
+        <p>Você está logado como <strong>adiministrador</strong>.</p>
+        <button onclick="logout()">Sair da conta</button>
+    </div>
+    <script>
+        verificaLogin()
+
+        function verificaLogin() {
+            let autenticado = localStorage.getItem("autenticado")
+            if (autenticado == 1) {
+                document.getElementById("painel").style.display = "block"
+                document.getElementById("autenticarForm").style.display = "none"
+            }
+        }
+
+
+        function autenticar() {
+            let user = document.getElementById("inputUser").value
+            let senha = document.getElementById("inputSenha").value
+
+            if (user != "admin") {
+                alert("Usuário incorreto")
+                document.getElementById("inputUser").value = ""
+                document.getElementById("inputSenha").value = ""
+                return
+            }
+
+            if (senha != "123123") {
+                alert("Senha incorreta")
+                document.getElementById("inputUser").value = ""
+                document.getElementById("inputSenha").value = ""
+                return
+            }
+
+            if (user.trim().length < 3) {
+                alert("Usuário incorreto. Verifique e tente novamente...")
+                return
+            }
+
+            if (senha.length == 0) {
+                alert("Senha incorreta. Verifique e tente novamente...")
+                return
+            }
+
+            localStorage.setItem("autenticado", 1)
+            document.getElementById("painel").style.display = "block"
+            document.getElementById("autenticarForm").style.display = "none"
+
+        }
+
+        function logout() {
+            localStorage.removeItem("autenticado")
+            document.getElementById("painel").style.display = "none"
+            document.getElementById("autenticarForm").style.display = "block"
+            document.getElementById("inputUser").value = ""
+            document.getElementById("inputSenha").value = ""
+        }
+    </script>
+</body>
+
+</html>

@@ -4,30 +4,35 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./fakeNews.css">
     <title>Fake news!</title>
 </head>
 
 <body>
-    <a href="./09_painel.html">Ir para o painel</a>
-    <h1>Fake news! - Engane a todos... </h1>
-    <p>Fake news publicadas ⚠ <strong id="fNumber">0</strong></p>
-    <p>Taxa de Pessoas capturadas 👁 <strong id="pNumber">0</strong></p>
-    <p>O mundo está sem caos algum, você é o agente do CAOS 🔥</p>
-    <img onclick="publicarFakeNews()" src="../imgs/fakenews.jpeg" width="250px" />
-    <p>Atualmente gerando <strong id="atualCliqueFakes">1</strong> Fake news por clique</p>
-    <p>Atualmente gerando <strong id="atualCliquePessoas">0.25</strong> Pessoas crentes por clique.</p>
-    <hr>
-    <strong id="redesQuant">0</strong> Redes de transmissão - 👁<strong id="redesPreco">25</strong> <button
-        onclick="redesTransmissao()">COMPRAR</button><br />
-    <strong id="curtosQuant">0</strong> Vídeos curtos - 👁<strong id="curtosPreco">100</strong> <button
-        onclick="videosCurtos()">COMPRAR</button><br />
-    <strong id="iaQuant">0</strong> Vídeos de IA - 👁<strong id="iaPreco">200</strong> <button
-        onclick="videosIA()">COMPRAR</button><br />
-    <strong id="famosoQuant">0</strong> Contratar Famosos - 👁<strong id="famosoPreco">350</strong> <button
-        onclick="contratarFamosos()">COMPRAR</button>
+    <div class = "nav">
+        <a href="./painel.html">Ir para o painel</a>
+        <h1>Fake news! - Engane a todos... </h1>
+        <p>O mundo está sem caos algum, você é o agente do CAOS 🔥</p>
+    </div>
+    <div class="jogo">
+        <p class="fakes">Fake news publicadas ⚠ <strong id="fNumber">0</strong></p>
+        <p class="pessoas">Taxa de Pessoas capturadas 👁 <strong id="pNumber">0</strong></p>
+        <img onclick="publicarFakeNews()" src="../img/fakenews.jpeg" width="250px" />
+        <p>Atualmente gerando <strong id="atualCliqueFakes">1</strong> Fake news por clique</p>
+        <p>Atualmente gerando <strong id="atualCliquePessoas">0.25</strong> Pessoas crentes por clique.</p>
+    </div>
+    <div class="compras">
+        <strong id="redesQuant">0</strong> Redes de transmissão - 👁<strong id="redesPreco">25</strong> <button
+            onclick="redesTransmissao()">COMPRAR</button><br />
+        <strong id="curtosQuant">0</strong> Vídeos curtos - 👁<strong id="curtosPreco">100</strong> <button
+            onclick="videosCurtos()">COMPRAR</button><br />
+        <strong id="iaQuant">0</strong> Vídeos de IA - 👁<strong id="iaPreco">200</strong> <button
+            onclick="videosIA()">COMPRAR</button><br />
+        <strong id="famosoQuant">0</strong> Contratar Famosos - 👁<strong id="famosoPreco">350</strong> <button
+            onclick="contratarFamosos()">COMPRAR</button>
+    </div>
 
-    <p id="loginRecompensa">Entre com uma conta para ganhar 👁 1.000 <button onclick="verificarLogin()">Resgatar
-            recompensa</button></p>
+    <p id="loginRecompensa" class="recompensa">Entre com uma conta para ganhar 👁 1.000 <button onclick="verificarLogin()">Resgatar recompensa</button></p>
     <script>
         let fakes = parseFloat(localStorage.getItem("fakes"))
         if (!fakes) {
@@ -98,6 +103,7 @@
                     alert("PARABÉNS! Você ganhou sua recompensa!")
                     pessoas += 1000
                     localStorage.setItem("recompensa", 1)
+                    localStorage.setItem("pessoas", pessoas)
                     document.getElementById("pNumber").innerHTML = pessoas
                     document.getElementById("loginRecompensa").innerHTML = ""
 
