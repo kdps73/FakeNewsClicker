@@ -104,7 +104,7 @@
         }
         let pessoas = parseFloat(localStorage.getItem("pessoas"))
         if (!pessoas) {
-            pessoas = 0
+            pessoas = 0.25
         }
         let redesPreco = parseFloat(localStorage.getItem("redesPreco"))
         if (!redesPreco) {
@@ -167,7 +167,7 @@
         // para que persistam ao fechar/reabrir o jogo.
         let emojisNaTela = []
         let emojisSalvos = []
-        let MAX_EMOJIS = 200
+        let MAX_EMOJIS = 100
 
         // Carrega emojis salvos do localStorage ao abrir a página
         let emojisSalvosStr = localStorage.getItem("emojisFlutuantes")
