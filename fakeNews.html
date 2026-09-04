@@ -5,34 +5,94 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./fakeNews.css">
-    <title>Fake news!</title>
+    <title>Fake News Clicker</title>
 </head>
 
 <body>
-    <div class = "nav">
-        <a href="./painel.html">Ir para o painel</a>
-        <h1>Fake news! - Engane a todos... </h1>
-        <p>O mundo está sem caos algum, você é o agente do CAOS 🔥</p>
-    </div>
-    <div class="jogo">
-        <p class="fakes">Fake news publicadas ⚠ <strong id="fNumber">0</strong></p>
-        <p class="pessoas">Taxa de Pessoas capturadas 👁 <strong id="pNumber">0</strong></p>
-        <img onclick="publicarFakeNews()" src="../img/fakenews.jpeg" width="250px" />
-        <p>Atualmente gerando <strong id="atualCliqueFakes">1</strong> Fake news por clique</p>
-        <p>Atualmente gerando <strong id="atualCliquePessoas">0.25</strong> Pessoas crentes por clique.</p>
-    </div>
-    <div class="compras">
-        <strong id="redesQuant">0</strong> Redes de transmissão - 👁<strong id="redesPreco">25</strong> <button
-            onclick="redesTransmissao()">COMPRAR</button><br />
-        <strong id="curtosQuant">0</strong> Vídeos curtos - 👁<strong id="curtosPreco">100</strong> <button
-            onclick="videosCurtos()">COMPRAR</button><br />
-        <strong id="iaQuant">0</strong> Vídeos de IA - 👁<strong id="iaPreco">200</strong> <button
-            onclick="videosIA()">COMPRAR</button><br />
-        <strong id="famosoQuant">0</strong> Contratar Famosos - 👁<strong id="famosoPreco">350</strong> <button
-            onclick="contratarFamosos()">COMPRAR</button>
+    <!-- NAVBAR -->
+    <div class="nav">
+        <div class="nav-link-esquerda">
+            <a href="./painel.html">📋 Painel</a>
+        </div>
+        <div class="nav-centro">
+            <h1>🔥 Fake News Clicker 🔥</h1>
+            <span class="nav-subtitulo">O mundo está sem caos algum, você é o agente do CAOS</span>
+        </div>
+        <div class="nav-recompensa">
+            <p id="loginRecompensa">Entre com uma conta para ganhar 👁 1.000 <button onclick="verificarLogin()">Resgatar
+                    recompensa</button></p>
+        </div>
     </div>
 
-    <p id="loginRecompensa" class="recompensa">Entre com uma conta para ganhar 👁 1.000 <button onclick="verificarLogin()">Resgatar recompensa</button></p>
+    <!-- CONTEÚDO PRINCIPAL -->
+    <div class="conteudo-principal">
+        <!-- SEÇÃO ESQUERDA - CLIQUE -->
+        <div class="secao-clique">
+            <div class="stats">
+                <p class="fakes">Fake news publicadas ⚠ <strong id="fNumber">0</strong></p>
+                <p class="pessoas">Pessoas capturadas 👁 <strong id="pNumber">0</strong></p>
+            </div>
+
+            <div class="imagem-container" id="emojiContainer">
+                <button><img onclick="publicarFakeNews()" src="./img/fakenews.png"
+                        alt="Clique para publicar fake news" /></button>
+            </div>
+
+            <div class="info-clique">
+                <p>Atualmente gerando <strong id="atualCliqueFakes">1</strong> Fake news por clique</p>
+                <p>Atualmente gerando <strong id="atualCliquePessoas">0.25</strong> Pessoas crentes por clique</p>
+            </div>
+        </div>
+
+        <!-- CARD LOJA -->
+        <div class="card card-loja">
+            <div class="card-titulo">
+                <h2>🛒 Loja</h2>
+            </div>
+            <div class="card-conteudo">
+                <div class="item-compra">
+                    <span class="item-emoji">📡</span>
+                    <div class="item-info">
+                        <span class="item-nome">Redes de transmissão</span>
+                        <span class="item-preco">Custo: 👁 <strong id="redesPreco">25</strong></span>
+                    </div>
+                    <span class="item-quant" id="redesQuant">0</span>
+                    <button onclick="redesTransmissao()">COMPRAR</button>
+                </div>
+
+                <div class="item-compra">
+                    <span class="item-emoji">📱</span>
+                    <div class="item-info">
+                        <span class="item-nome">Vídeos curtos</span>
+                        <span class="item-preco">Custo: 👁 <strong id="curtosPreco">100</strong></span>
+                    </div>
+                    <span class="item-quant" id="curtosQuant">0</span>
+                    <button onclick="videosCurtos()">COMPRAR</button>
+                </div>
+
+                <div class="item-compra">
+                    <span class="item-emoji">🤖</span>
+                    <div class="item-info">
+                        <span class="item-nome">Vídeos de IA</span>
+                        <span class="item-preco">Custo: 👁 <strong id="iaPreco">200</strong></span>
+                    </div>
+                    <span class="item-quant" id="iaQuant">0</span>
+                    <button onclick="videosIA()">COMPRAR</button>
+                </div>
+
+                <div class="item-compra">
+                    <span class="item-emoji">⭐</span>
+                    <div class="item-info">
+                        <span class="item-nome">Contratar Famosos</span>
+                        <span class="item-preco">Custo: 👁 <strong id="famosoPreco">350</strong></span>
+                    </div>
+                    <span class="item-quant" id="famosoQuant">0</span>
+                    <button onclick="contratarFamosos()">COMPRAR</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <script>
         let fakes = parseFloat(localStorage.getItem("fakes"))
         if (!fakes) {
@@ -83,18 +143,99 @@
             famosoQuant = 0
         }
 
-        document.getElementById("fNumber").innerHTML = fakes
-        document.getElementById("pNumber").innerHTML = pessoas
+        document.getElementById("fNumber").innerHTML = Math.floor(fakes)
+        document.getElementById("pNumber").innerHTML = Math.floor(pessoas)
         document.getElementById("atualCliqueFakes").innerHTML = fakesPC
-        document.getElementById("atualCliquePessoas").innerHTML = (fakesPC / 4)
-        document.getElementById("redesPreco").innerHTML = parseInt(redesPrecoAtual)
+        document.getElementById("atualCliquePessoas").innerHTML = Math.floor((fakesPC *(fakesPC / 4)))
+        document.getElementById("redesPreco").innerHTML = Math.floor(redesPrecoAtual)
         document.getElementById("redesQuant").innerHTML = redesQuant
-        document.getElementById("curtosPreco").innerHTML = parseInt(curtosPrecoAtual)
+        document.getElementById("curtosPreco").innerHTML = Math.floor(curtosPrecoAtual)
         document.getElementById("curtosQuant").innerHTML = curtosQuant
-        document.getElementById("iaPreco").innerHTML = parseInt(iaPrecoAtual)
+        document.getElementById("iaPreco").innerHTML = Math.floor(iaPrecoAtual)
         document.getElementById("iaQuant").innerHTML = iaQuant
-        document.getElementById("famosoPreco").innerHTML = parseInt(famosoPrecoAtual)
+        document.getElementById("famosoPreco").innerHTML = Math.floor(famosoPrecoAtual)
         document.getElementById("famosoQuant").innerHTML = famosoQuant
+
+        // ============================================
+        // SISTEMA DE EMOJIS FLUTUANTES
+        // ============================================
+        // Mapeamento de cada item de compra para o emoji correspondente.
+        // Quando o jogador compra um item, o emoji daquele item aparece
+        // flutuando ao redor da imagem principal, em posição e tamanho aleatórios.
+        // Se passar de 200 emojis, o mais antigo é removido (FIFO).
+        // Os emojis são salvos no localStorage como um array de strings
+        // para que persistam ao fechar/reabrir o jogo.
+        let emojisNaTela = []
+        let emojisSalvos = []
+        let MAX_EMOJIS = 200
+
+        // Carrega emojis salvos do localStorage ao abrir a página
+        let emojisSalvosStr = localStorage.getItem("emojisFlutuantes")
+        if (emojisSalvosStr) {
+            emojisSalvos = JSON.parse(emojisSalvosStr)
+            for (let i = 0; i < emojisSalvos.length; i++) {
+                criarEmojiNaTela(emojisSalvos[i])
+            }
+        }
+
+        function criarEmojiNaTela(emoji) {
+            let container = document.getElementById("emojiContainer")
+
+            let span = document.createElement("span")
+            span.className = "emoji-flutuante"
+            span.innerHTML = emoji
+
+            // Tamanho aleatório entre 16px e 36px
+            let tamanho = Math.floor(Math.random() * 21) + 16
+            span.style.fontSize = tamanho + "px"
+
+            // Posição aleatória ao redor da imagem (dentro do container de 420x420)
+            // Evita o centro (onde fica a imagem) posicionando nas bordas
+            let lado = Math.floor(Math.random() * 4)
+            let x, y
+            if (lado == 0) {
+                // Topo
+                x = Math.floor(Math.random() * 400)
+                y = Math.floor(Math.random() * 40)
+            } else if (lado == 1) {
+                // Baixo
+                x = Math.floor(Math.random() * 400)
+                y = 380 + Math.floor(Math.random() * 40)
+            } else if (lado == 2) {
+                // Esquerda
+                x = Math.floor(Math.random() * 40)
+                y = Math.floor(Math.random() * 400)
+            } else {
+                // Direita
+                x = 380 + Math.floor(Math.random() * 40)
+                y = Math.floor(Math.random() * 400)
+            }
+
+            span.style.left = x + "px"
+            span.style.top = y + "px"
+
+            // Delay de animação aleatório para variar o movimento
+            span.style.animationDelay = (Math.random() * 2).toFixed(2) + "s"
+
+            container.appendChild(span)
+            emojisNaTela.push(span)
+        }
+
+        function adicionarEmojiFlutuante(emoji) {
+            // Se já tem 200, remove o mais antigo (FIFO)
+            if (emojisNaTela.length >= MAX_EMOJIS) {
+                let maisAntigo = emojisNaTela.shift()
+                if (maisAntigo.parentNode) {
+                    maisAntigo.parentNode.removeChild(maisAntigo)
+                }
+                emojisSalvos.shift()
+            }
+
+            criarEmojiNaTela(emoji)
+            emojisSalvos.push(emoji)
+            localStorage.setItem("emojisFlutuantes", JSON.stringify(emojisSalvos))
+        }
+        // ============================================
 
 
         function verificarLogin() {
@@ -103,8 +244,8 @@
                     alert("PARABÉNS! Você ganhou sua recompensa!")
                     pessoas += 1000
                     localStorage.setItem("recompensa", 1)
-                    localStorage.setItem("pessoas", pessoas)
-                    document.getElementById("pNumber").innerHTML = pessoas
+                    localStorage.setItem("pessoas", Math.floor(pessoas))
+                    document.getElementById("pNumber").innerHTML = Math.floor(pessoas)
                     document.getElementById("loginRecompensa").innerHTML = ""
 
                 } else {
@@ -118,13 +259,13 @@
 
         function publicarFakeNews() {
             fakes += fakesPC
-            pessoas += fakesPC / 4
+            pessoas += (fakesPC *(fakesPC / 4))
 
             localStorage.setItem("fakes", fakes)
             localStorage.setItem("fakesPC", fakesPC)
             localStorage.setItem("pessoas", pessoas)
-            document.getElementById("fNumber").innerHTML = fakes
-            document.getElementById("pNumber").innerHTML = pessoas
+            document.getElementById("fNumber").innerHTML = Math.floor(fakes)
+            document.getElementById("pNumber").innerHTML = Math.floor(pessoas)
         }
 
         function redesTransmissao() {
@@ -138,20 +279,18 @@
                 localStorage.setItem("fakes", fakes)
                 localStorage.setItem("pessoas", pessoas)
                 localStorage.setItem("redesQuant", redesQuant)
-                redesPrecoAtual = redesPreco + (redesPreco * 0.2)
+                
+                redesPrecoAtual = Math.floor(redesPreco + (redesPreco * 0.2))
                 redesPreco = redesPrecoAtual
                 localStorage.setItem("redesPreco", redesPreco)
-                if (Number.isInteger(redesPrecoAtual)) {
-                    document.getElementById("redesPreco").innerHTML = parseInt(redesPrecoAtual)
-                } else {
-                    document.getElementById("redesPreco").innerHTML = redesPrecoAtual
-                }
-
+    
+                document.getElementById("redesPreco").innerHTML = redesPrecoAtual
                 document.getElementById("redesQuant").innerHTML = redesQuant
-
-                document.getElementById("pNumber").innerHTML = pessoas
+                document.getElementById("pNumber").innerHTML = Math.floor(pessoas)
                 document.getElementById("atualCliqueFakes").innerHTML = fakesPC
-                document.getElementById("atualCliquePessoas").innerHTML = (fakesPC / 4)
+                document.getElementById("atualCliquePessoas").innerHTML = Math.floor((fakesPC *(fakesPC / 4)))
+
+                adicionarEmojiFlutuante("📡")
             }
         }
 
@@ -166,20 +305,18 @@
                 localStorage.setItem("fakes", fakes)
                 localStorage.setItem("pessoas", pessoas)
                 localStorage.setItem("curtosQuant", curtosQuant)
-                curtosPrecoAtual = curtosPreco + (curtosPreco * 0.4)
+                
+                curtosPrecoAtual = Math.floor(curtosPreco + (curtosPreco * 0.4))
                 curtosPreco = curtosPrecoAtual
                 localStorage.setItem("curtosPreco", curtosPreco)
-                if (Number.isInteger(curtosPrecoAtual)) {
-                    document.getElementById("curtosPreco").innerHTML = parseInt(curtosPrecoAtual)
-                } else {
-                    document.getElementById("curtosPreco").innerHTML = curtosPrecoAtual
-                }
-
+                
+                document.getElementById("curtosPreco").innerHTML = curtosPrecoAtual
                 document.getElementById("curtosQuant").innerHTML = curtosQuant
-
-                document.getElementById("pNumber").innerHTML = pessoas
+                document.getElementById("pNumber").innerHTML = Math.floor(pessoas)
                 document.getElementById("atualCliqueFakes").innerHTML = fakesPC
-                document.getElementById("atualCliquePessoas").innerHTML = (fakesPC / 4)
+                document.getElementById("atualCliquePessoas").innerHTML = Math.floor((fakesPC *(fakesPC / 4)))
+
+                adicionarEmojiFlutuante("📱")
             }
         }
 
@@ -194,20 +331,18 @@
                 localStorage.setItem("fakes", fakes)
                 localStorage.setItem("pessoas", pessoas)
                 localStorage.setItem("iaQuant", iaQuant)
-                iaPrecoAtual = iaPreco + (iaPreco * 0.8)
+                
+                iaPrecoAtual = Math.floor(iaPreco + (iaPreco * 0.8))
                 iaPreco = iaPrecoAtual
                 localStorage.setItem("iaPreco", iaPreco)
-                if (Number.isInteger(iaPrecoAtual)) {
-                    document.getElementById("iaPreco").innerHTML = parseInt(iaPrecoAtual)
-                } else {
-                    document.getElementById("iaPreco").innerHTML = iaPrecoAtual
-                }
-
+                
+                document.getElementById("iaPreco").innerHTML = iaPrecoAtual
                 document.getElementById("iaQuant").innerHTML = iaQuant
-
-                document.getElementById("pNumber").innerHTML = pessoas
+                document.getElementById("pNumber").innerHTML = Math.floor(pessoas)
                 document.getElementById("atualCliqueFakes").innerHTML = fakesPC
-                document.getElementById("atualCliquePessoas").innerHTML = (fakesPC / 4)
+                document.getElementById("atualCliquePessoas").innerHTML = Math.floor((fakesPC *(fakesPC / 4)))
+
+                adicionarEmojiFlutuante("🤖")
             }
         }
 
@@ -222,20 +357,18 @@
                 localStorage.setItem("fakes", fakes)
                 localStorage.setItem("pessoas", pessoas)
                 localStorage.setItem("famosoQuant", famosoQuant)
-                famosoPrecoAtual = famosoPreco + (famosoPreco * 1.6)
+                
+                famosoPrecoAtual = Math.floor(famosoPreco + (famosoPreco * 1.6))
                 famosoPreco = famosoPrecoAtual
                 localStorage.setItem("famosoPreco", famosoPreco)
-                if (Number.isInteger(famosoPrecoAtual)) {
-                    document.getElementById("famosoPreco").innerHTML = parseInt(famosoPrecoAtual)
-                } else {
-                    document.getElementById("famosoPreco").innerHTML = famosoPrecoAtual
-                }
-
+                
+                document.getElementById("famosoPreco").innerHTML = famosoPrecoAtual
                 document.getElementById("famosoQuant").innerHTML = famosoQuant
-
-                document.getElementById("pNumber").innerHTML = pessoas
+                document.getElementById("pNumber").innerHTML = Math.floor(pessoas)
                 document.getElementById("atualCliqueFakes").innerHTML = fakesPC
-                document.getElementById("atualCliquePessoas").innerHTML = (fakesPC / 4)
+                document.getElementById("atualCliquePessoas").innerHTML = Math.floor((fakesPC *(fakesPC / 4)))
+
+                adicionarEmojiFlutuante("⭐")
             }
         }
     </script>

@@ -1,32 +1,48 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <link rel="stylesheet" href="./fakeNews.css">
+    <title>Painel - Fake News Clicker</title>
 </head>
 
 <body>
-    <a href="./fakeNews.html">Ir para o Jogo</a>
-    <div style="display: block;" id="autenticarForm">
-        <form>
-            <h1>Login</h1>
-            <p>Digite seu usuário: </p>
-            <input id="inputUser" />
-            <p>Digite sua senha: </p>
-            <input type="password" id="inputSenha" />
-            <br />
-        </form>
-        <button onclick="autenticar()">Entrar</button>
+    <!-- NAVBAR (idêntica ao fakeNews.html) -->
+    <div class="nav">
+        <div class="nav-link-esquerda">
+            <a href="./fakeNews.html">🎮 Jogo</a>
+        </div>
+        <div class="nav-centro">
+            <h1>🔥 Fake News Clicker 🔥</h1>
+            <span class="nav-subtitulo">O mundo está sem caos algum, você é o agente do CAOS</span>
+        </div>
     </div>
 
+    <!-- CARD LOGIN -->
+    <div class="card card-login" id="autenticarForm" style="display: block;">
+        <div class="card-titulo">
+            <h2>🔑 Login</h2>
+        </div>
+        <div class="card-conteudo">
+            <form>
+                <p>Digite seu usuário:</p>
+                <input id="inputUser" />
+                <p style="margin-top: 14px;">Digite sua senha:</p>
+                <input type="password" id="inputSenha" />
+            </form>
+            <button onclick="autenticar()">Entrar</button>
+        </div>
+    </div>
 
-    <div style="display: none" id="painel">
+    <!-- PAINEL ADMIN -->
+    <div class="painel-admin" id="painel" style="display: none;">
         <h1>Painel administrativo</h1>
-        <p>Você está logado como <strong>adiministrador</strong>.</p>
+        <p>Você está logado como <strong>administrador</strong>.</p>
         <button onclick="logout()">Sair da conta</button>
     </div>
+
     <script>
         verificaLogin()
 
